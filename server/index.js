@@ -32,6 +32,10 @@ async function handleApi(request, response, url) {
     sendJson(response, 200, getSummary(db));
     return true;
   }
+  if (request.method === 'GET' && url.pathname === '/api/health') {
+    sendJson(response, 200, { status: 'ok' });
+    return true;
+  }
   if (request.method === 'GET' && url.pathname === '/api/employees') {
     sendJson(response, 200, listEmployees(db, Object.fromEntries(url.searchParams)));
     return true;
@@ -119,7 +123,8 @@ const server = createServer(async (request, response) => {
 });
 
 const port = Number(process.env.PORT ?? 3001);
-server.listen(port, '127.0.0.1', () => {
+const host = process.env.HOST ?? '127.0.0.1';
+server.listen(port, host, () => {
   console.log(`ACME salary API available at http://127.0.0.1:${port}`);
   console.log(`Database contains ${existingCount || EMPLOYEE_COUNT} employee records.`);
 });

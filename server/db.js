@@ -2,7 +2,7 @@ import { mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 
-export function createDatabase(databasePath = resolve('data', 'acme.sqlite')) {
+export function createDatabase(databasePath = process.env.DB_PATH ?? resolve('data', 'acme.sqlite')) {
   mkdirSync(dirname(databasePath), { recursive: true });
   const db = new DatabaseSync(databasePath);
   db.exec(`

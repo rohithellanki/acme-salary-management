@@ -31,6 +31,12 @@ npm start
 
 The server serves the built UI and API on port 3001. Set `PORT` to change the API port. The SQLite database is local and is excluded from Git.
 
+## Render preview deployment
+
+The repository includes a Render Blueprint in `render.yaml`. In Render, choose **New → Blueprint**, connect `rohithellanki/acme-salary-management`, and deploy the `acme-salary-management` service. The Blueprint builds the React UI, starts the Node API, binds to Render's public interface, and uses `/api/health` for health checks.
+
+This assessment uses the **free preview** configuration. Its SQLite database is on ephemeral storage: employee edits and salary history may be lost after a restart, redeploy, or instance spin-down. The app seeds synthetic data again when the database is empty. Do not use this preview for real compensation data. For durable operation, use a paid instance with a persistent disk and set `DB_PATH` to a file on the mounted disk (for example `/var/data/acme.sqlite`); arrange backups and access controls before using sensitive data.
+
 ## What it does
 
 - Browse the compensation dashboard with employee count, payroll by location/local currency, and average pay by department/currency.

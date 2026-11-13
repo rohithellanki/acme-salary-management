@@ -18,7 +18,7 @@ The initial user is an HR manager working on a trusted internal network. They re
 - Authentication, authorization, SSO, and multi-tenant access: this assessment runs as a local demonstration and has one stated persona. It must not be exposed publicly with real payroll data until identity, least-privilege access, and deployment security are added.
 - Payroll execution, tax/benefit calculations, compensation recommendations, and currency conversion: these require jurisdiction-specific policy and authoritative external data; the first release manages and describes salary records only.
 - Bulk imports/exports, spreadsheet parity, and employee self-service: useful follow-ups, but not necessary to validate the core searchable single-record workflow and require additional validation/privacy decisions.
-- Production cloud deployment, backups, monitoring, and compliance certification: these depend on ACME infrastructure and legal requirements unavailable in this assessment. The delivered app is locally runnable and uses synthetic data only.
+- Production cloud deployment, backups, monitoring, and compliance certification: these depend on ACME infrastructure and legal requirements unavailable in this assessment. A free Render preview may be used for demonstration only; it is not a persistent or production deployment.
 
 ## Success criteria and constraints
 The seed command creates exactly 10,000 records reproducibly. The HR manager can find and update a record without transferring the full dataset to the browser. Salary analytics explicitly preserve currency boundaries. Core behavior is covered by fast, deterministic tests. Backend: Node.js with SQLite; UI: React. The app is for synthetic demonstration data, not production personal or compensation data.
