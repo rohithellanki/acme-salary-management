@@ -67,5 +67,6 @@ This assessment build uses synthetic data and has no authentication or authoriza
 ## Assessment artifacts
 
 - [Requirements](./requirements.md) — goal, scope, exclusions, and success criteria.
+- [Assessment notes](./docs/assessment-notes.md) — requirement traceability, architecture, trade-offs, performance, and AI-assisted verification.
 - This README — runbook, API contract, and deployment assumptions.
 - [Product walkthrough video (MP4)](./demo/salary-management-demo.mp4) — a short, silent walkthrough of the deployed app using synthetic employee data.

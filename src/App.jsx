@@ -209,18 +209,18 @@ function App() {
               </div>
               <div className="payroll-list">
                 {countries.map((row) => {
-                  const max = Math.max(...countries.map((item) => item.total_payroll));
+                  const largestHeadcount = Math.max(...countries.map((item) => item.employee_count));
                   return (
                     <div className="payroll-row" key={row.country}>
                       <div className="location-name"><span className="country-dot">{row.country.slice(0, 1)}</span><strong>{row.country}</strong><span className="location-count">{formatNumber(row.employee_count)}</span></div>
-                      <div className="bar-track"><div className="bar-fill" style={{ width: `${Math.max(3, (row.total_payroll / max) * 100)}%` }} /></div>
+                      <div className="bar-track" role="img" aria-label={`${formatNumber(row.employee_count)} employees`}><div className="bar-fill" style={{ width: `${Math.max(3, (row.employee_count / largestHeadcount) * 100)}%` }} /></div>
                       <div className="payroll-amount">{money(row.total_payroll, row.currency, true)}</div>
                     </div>
                   );
                 })}
                 {!countries.length && <div className="empty-state">Loading location data…</div>}
               </div>
-              <div className="panel-footnote"><span className="info-icon">i</span> Payroll totals are not converted or combined across currencies.</div>
+              <div className="panel-footnote"><span className="info-icon">i</span> Bars show headcount; payroll totals remain in local currency and are never compared or combined.</div>
             </article>
 
             <article className="panel distribution-panel">
