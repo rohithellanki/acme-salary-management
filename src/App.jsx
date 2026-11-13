@@ -33,6 +33,28 @@ function App() {
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState(
+    () => window.location.hash === '#employees' ? 'employees' : 'overview',
+  );
+
+  useEffect(() => {
+    function updateActiveSection() {
+      const employeeSection = document.getElementById('employees');
+      setActiveSection(
+        employeeSection && employeeSection.getBoundingClientRect().top <= window.innerHeight * 0.55
+          ? 'employees'
+          : 'overview',
+      );
+    }
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    updateActiveSection();
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
+  }, []);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setQuery(filters.search), 250);
@@ -114,8 +136,8 @@ function App() {
         </a>
         <div className="workspace-label">WORKSPACE</div>
         <nav aria-label="Main navigation">
-          <a className="nav-item active" href="#overview"><span className="nav-icon">◫</span> Overview</a>
-          <a className="nav-item" href="#employees"><span className="nav-icon">♙</span> Employees</a>
+          <a className={`nav-item${activeSection === 'overview' ? ' active' : ''}`} aria-current={activeSection === 'overview' ? 'location' : undefined} href="#overview" onClick={() => setActiveSection('overview')}><span className="nav-icon">◫</span> Overview</a>
+          <a className={`nav-item${activeSection === 'employees' ? ' active' : ''}`} aria-current={activeSection === 'employees' ? 'location' : undefined} href="#employees" onClick={() => setActiveSection('employees')}><span className="nav-icon">♙</span> Employees</a>
         </nav>
         <div className="sidebar-bottom">
           <div className="privacy-note"><span className="status-dot" /> Demo environment</div>
@@ -134,7 +156,7 @@ function App() {
         </header>
 
         <section className="page-content" id="overview">
-          <div className="page-heading">
+          <div className="page-heading" id="overview">
             <div>
               <div className="eyebrow">PEOPLE OPERATIONS <span className="eyebrow-line" /></div>
               <h1>Compensation overview</h1>
