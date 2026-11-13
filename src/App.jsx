@@ -162,7 +162,17 @@ function App() {
               <h1>Compensation overview</h1>
               <p className="subtitle">A clear view of how your organization pays people.</p>
             </div>
-            <div className="updated-label"><span className="refresh-icon">↻</span> Live data</div>
+            <button
+              className={`updated-label${loading ? ' is-refreshing' : ''}`}
+              type="button"
+              onClick={loadData}
+              disabled={loading}
+              aria-label={loading ? 'Refreshing dashboard data' : 'Refresh dashboard data'}
+              aria-live="polite"
+            >
+              <span className="refresh-icon" aria-hidden="true">↻</span>
+              {loading ? 'Refreshing…' : 'Refresh data'}
+            </button>
           </div>
 
           {error && <div className="alert error-alert" role="alert">{error}<button onClick={loadData}>Try again</button></div>}

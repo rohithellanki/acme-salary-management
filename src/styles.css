@@ -64,8 +64,12 @@ button { cursor: pointer; }
 h1,h2,h3,p { margin: 0; }
 h1 { color: #262833; font: 700 25px Manrope, sans-serif; letter-spacing: -.8px; margin-top: 9px; }
 .subtitle { color: #8a8e9a; font-size: 11px; margin-top: 6px; }
-.updated-label { align-items: center; color: #808591; display: flex; font-size: 10px; gap: 7px; padding-bottom: 3px; }
+.updated-label { align-items: center; background: transparent; border: 0; color: #808591; display: flex; font-size: 10px; gap: 7px; padding: 0 0 3px; }
+.updated-label:not(:disabled):hover { color: #6552c9; }
+.updated-label:disabled { cursor: wait; }
 .refresh-icon { color: #7260d1; font-size: 17px; }
+.updated-label.is-refreshing .refresh-icon { animation: refresh-spin .8s linear infinite; }
+@keyframes refresh-spin { to { transform: rotate(360deg); } }
 .alert { align-items: center; border-radius: 6px; display: flex; font-size: 11px; justify-content: space-between; margin: -5px 0 15px; padding: 10px 12px; }
 .alert button { background: transparent; border: 0; color: inherit; font-size: 11px; font-weight: 600; }
 .error-alert { background: #fff0ef; color: #a73931; }
