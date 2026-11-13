@@ -68,3 +68,4 @@ This assessment build uses synthetic data and has no authentication or authoriza
 
 - [Requirements](./requirements.md) — goal, scope, exclusions, and success criteria.
 - This README — runbook, API contract, and deployment assumptions.
+- [Product walkthrough video (MP4)](./demo/salary-management-demo.mp4) — a short, silent walkthrough of the deployed app using synthetic employee data.
