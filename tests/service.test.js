@@ -58,7 +58,8 @@ describe('salary management data services', () => {
     assert.equal(summary.totalEmployees, 48);
     assert.equal(summary.payrollByCountry.length, 8);
     assert.ok(summary.payrollByCountry.every((row) => row.employee_count === 6));
-    assert.ok(summary.compensationByDepartment.length > 0);
+    assert.equal(summary.compensationByDepartment.length, 48);
+    assert.ok(summary.compensationByDepartment.every((row) => row.minimum_salary <= row.average_salary && row.average_salary <= row.maximum_salary));
     assert.equal(summary.countries.length, 8);
     assert.equal(summary.departments.length, 6);
   });

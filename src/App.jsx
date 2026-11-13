@@ -198,11 +198,11 @@ function App() {
               </div>
               <div className="distribution-table">
                 <div className="distribution-head"><span>DEPARTMENT</span><span>TEAM</span><span>AVERAGE PAY</span></div>
-                {(summary?.compensationByDepartment ?? []).slice(0, 9).map((row, index) => (
+                {(summary?.compensationByDepartment ?? []).map((row, index) => (
                   <div className="distribution-row" key={`${row.department}-${row.currency}`}>
                     <span className="department-cell"><span className={`department-marker marker-${index % 4}`} />{row.department}<small>{currencyNames.of(row.currency)}</small></span>
                     <span className="team-count">{formatNumber(row.employee_count)}</span>
-                    <span className="average-pay">{money(row.average_salary, row.currency)}</span>
+                    <span className="average-pay"><strong>{money(row.average_salary, row.currency)}</strong><small>{money(row.minimum_salary, row.currency)} – {money(row.maximum_salary, row.currency)}</small></span>
                   </div>
                 ))}
                 {!summary && <div className="empty-state">Loading compensation data…</div>}
